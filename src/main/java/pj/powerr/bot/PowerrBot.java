@@ -1,5 +1,6 @@
 package pj.powerr.bot;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -7,9 +8,14 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import org.springframework.stereotype.Component;
+import pj.powerr.db.WorkoutRepository;
+import pj.powerr.entity.Workout;
 
 @Component
 public class PowerrBot extends TelegramLongPollingBot{
+
+    @Autowired
+    private WorkoutRepository workoutRepository;
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -18,7 +24,7 @@ public class PowerrBot extends TelegramLongPollingBot{
             String chatId = update.getMessage().getChatId().toString();
 
             // Simple command: /add_exercise exercise_name weight reps
-            if (messageText.startsWith("/add_exercise")) {
+            if (messageText.startsWith("/add_exercise") || messageText.startsWith("/exercise") || messageText.startsWith("/adex")) {
                 String[] parts = messageText.split(" ");
                 if (parts.length == 4) {
                     String exercise = parts[1];
