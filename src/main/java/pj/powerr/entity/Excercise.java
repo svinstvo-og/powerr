@@ -28,10 +28,12 @@ public class Excercise {
 
     public Void setName(Excercise excercise, String name) {
         this.name = name;
+        return null;
     }
 
     public Void setMuscleGroup(Excercise excercise, String muscleGroup) {
         this.muscleGroup = muscleGroup;
+        return null;
     }
 
     public Excercise () {}
