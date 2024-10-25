@@ -9,7 +9,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PowerrBot extends TelegramLongPollingBot {
+public class PowerrBot extends TelegramLongPollingBot{
 
     @Override
     public void onUpdateReceived(Update update) {
