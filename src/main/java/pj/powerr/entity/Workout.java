@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
+@Entity
 public class Workout {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)

@@ -9,7 +9,7 @@ public class PowerrApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(PowerrApplication.class, args);
+		SpringApplication.run(PowerrApplication.class);
 
 	}
 
