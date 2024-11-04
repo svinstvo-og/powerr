@@ -41,4 +41,14 @@ public class AuthController {
 
         return jwtUtil.generateToken(loginRequest.getUsername());
     }
+
+    @GetMapping("/signup")
+    public String signupPage(Model model) {
+        return "signup";
+    }
+
+    @PostMapping("/signup")
+    public String signup() {
+        
+    }
 }

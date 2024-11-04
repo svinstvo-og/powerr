@@ -1,6 +1,6 @@
 package pj.powerr.auth;
 
-class LoginRequest {
+public class LoginRequest {
     private String username;
     private String password;
 
