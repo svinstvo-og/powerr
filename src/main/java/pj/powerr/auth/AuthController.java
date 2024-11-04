@@ -47,8 +47,10 @@ public class AuthController {
         return "signup";
     }
 
+
     @PostMapping("/signup")
     public String signup() {
-        
+        //TODO
+        return "signup";
     }
 }
