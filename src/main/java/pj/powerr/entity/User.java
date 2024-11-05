@@ -17,15 +17,35 @@ public class User {
 
     private String telegramId;
 
-    Long getId(User user) {
+    public Long getId(User user) {
         return user.id;
     }
 
-    String getUsername(User user) {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername(User user) {
         return user.username;
     }
 
-    String getTelegramId(User user) {
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getTelegramId(User user) {
         return user.telegramId;
+    }
+
+    public void setTelegramId(String telegramId) {
+        this.telegramId = telegramId;
+    }
+
+    public String getPassword(User user) {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
