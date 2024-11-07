@@ -10,14 +10,20 @@
 <div class="center">
     <div class="blur-background">
         <h1>Sign Up</h1>
+
+        <!-- Display error messages if any -->
+        <div th:if="${#fields.hasErrors('username')}" style="color: red;">
+            <p th:errors="*{username}"></p>
+        </div>
+
         <form action="/signup" method="POST">
-            <input type="text" class="input-field" name="username" placeholder="Username" required>
-            <input type="password" class="input-field" name="password" placeholder="Password" required>
+            <input type="text" class="input-field" name="username" placeholder="Username" required th:field="*{username}">
+            <input type="password" class="input-field" name="password" placeholder="Password" required th:field="*{password}">
             <input type="password" class="input-field" name="confirmPassword" placeholder="Confirm Password" required>
             <button type="submit" class="button">Sign Up</button>
         </form>
-        <!-- Link to Login Page -->
-        <p>Already have an account? <a href="login">Log in here</a></p>
+
+        <p>Already have an account? <a href="/login">Log in here</a></p>
     </div>
 </div>
 </body>

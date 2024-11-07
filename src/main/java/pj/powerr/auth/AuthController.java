@@ -9,9 +9,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pj.powerr.auth.JwtUtil;
 import pj.powerr.auth.LoginRequest;
+import pj.powerr.db.UserRepository;
+import pj.powerr.entity.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 //@RestController
 @Controller
@@ -23,6 +27,10 @@ public class AuthController {
 
     @Autowired
     private JwtUtil jwtUtil;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
     public String loginPage(Model model) {
@@ -49,8 +57,20 @@ public class AuthController {
 
 
     @PostMapping("/signup")
-    public String signup() {
-        //TODO
-        return "signup";
+    public String signup(@ModelAttribute("user") User user, BindingResult result, Model model) {
+        // Check if username already exists
+        if (userRepository.findByUsername(user.getUsername(user)) != null) {
+            result.rejectValue("username", "error.user", "Username is already taken.");
+            return "signup"; // Return to signup page with error
+        }
+
+        // Encode the password
+        user.setPassword(passwordEncoder.encode(user.getPassword(user)));
+
+        // Save the new user to the database
+        userRepository.save(user);
+
+        // Redirect to login page after successful registration
+        return "redirect:/login";
     }
 }
