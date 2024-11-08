@@ -52,20 +52,22 @@ public class AuthController {
 
     @GetMapping("/signup")
     public String signupPage(Model model) {
+        model.addAttribute("user", new User());
         return "signup";
     }
 
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute("user") User user, BindingResult result, Model model) {
-        // Check if username already exists
-        if (userRepository.findByUsername(user.getUsername(user)) != null) {
+        if (userRepository.findByUsername(user.getUsername()) != null) {
             result.rejectValue("username", "error.user", "Username is already taken.");
-            return "signup"; // Return to signup page with error
         }
 
-        // Encode the password
-        user.setPassword(passwordEncoder.encode(user.getPassword(user)));
+        if (result.hasErrors()) {
+            return "signup";
+        }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // Save the new user to the database
         userRepository.save(user);
