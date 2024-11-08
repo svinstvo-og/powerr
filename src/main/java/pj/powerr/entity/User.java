@@ -5,14 +5,15 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(unique = true, nullable = false)
-    //@NotBlank(message = "Username is required")
+    @NotBlank(message = "Username is required")
     private String username;
 
     @NotBlank(message = "Password is required")
@@ -20,11 +21,11 @@ public class User {
 
     private String telegramId;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

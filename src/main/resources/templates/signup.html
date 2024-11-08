@@ -10,7 +10,7 @@
     <div class="blur-background">
         <h1>Sign Up</h1>
 
-        <form action="/signup" method="POST" th:object="${user}">
+        <form action="signup" method="POST" th:object="${user}">
             <!-- Username Field with Error Handling -->
             <input type="text" class="input-field" name="username" placeholder="Username" th:field="*{username}" required>
             <div th:if="${#fields.hasErrors('username')}" style="color: red;">
