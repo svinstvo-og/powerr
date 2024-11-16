@@ -8,16 +8,27 @@
 </head>
 <body>
 <div class="center">
-    <div class="blur-background">
-        <h1>Login</h1>
-        <form action="/login" method="POST">
-            <input type="text" class="input-field" name="username" placeholder="Username" required>
-            <input type="password" class="input-field" name="password" placeholder="Password" required>
-            <button type="submit" class="button">Login</button>
-        </form>
-        <!-- Link to Signup Page -->
-        <p>Don’t have an account? <a href="signup">Sign up here</a></p>
+    <div class="center">
+        <div class="blur-background">
+            <h1>Login</h1>
+            <form th:action="@{/auth/login}" th:object="${loginRequest}" method="post">
+                <input type="text" th:field="*{username}" placeholder="Username" required>
+                <input type="password" th:field="*{password}" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <!-- Display error message if login fails -->
+            <p>Don’t have an account? <a href="signup">Sign up here</a></p>
+            <p th:if="${loginError}" th:text="${loginError}" style="color: red;"></p>
+        </div>
     </div>
+
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
