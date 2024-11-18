@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Replace with the actual CSS path -->
+</head>
+<body>
+<div class="center">
+    <div class="center">
+        <div class="blur-background">
+            <h1>Login</h1>
+            <form action="/auth/login" method="post">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <!-- Display error message if login fails -->
+            <p>Don’t have an account? <a href="signup">Sign up here</a></p>
+            <p id="login-error" style="color: red;"></p> <!-- Error message placeholder -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // Example JavaScript for displaying login error message (optional)
+    const urlParams = new URLSearchParams(window.location.search);
+    const loginError = urlParams.get('error'); // Assume error message is passed via query param 'error'
+    if (loginError) {
+        document.getElementById('login-error').textContent = loginError;
+    }
+</script>
+</body>
+</html>

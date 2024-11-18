@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="container">
+  <h1>Analytics</h1>
+  <canvas id="workoutChart" width="400" height="200"></canvas>
+</div>
+<script>
+  // Dummy data for Chart.js
+  const ctx = document.getElementById('workoutChart').getContext('2d');
+  const workoutChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+      datasets: [{
+        label: 'Total Weight Lifted (kg)',
+        data: [1200, 1500, 1300, 1700],
+        borderColor: 'rgba(0, 255, 255, 0.5)',
+        backgroundColor: 'rgba(0, 255, 255, 0.1)',
+        borderWidth: 2
+      }]
+    }
+  });
+</script>
+</body>
+</html>

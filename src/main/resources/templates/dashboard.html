@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js" defer></script>
+</head>
+<body>
+<div class="container">
+  <h1>Dashboard</h1>
+  <button class="button" onclick="toggleModal('workoutModal')">Log Workout</button>
+  <button class="button" onclick="window.location.href='/analytics'">View Analytics</button>
+</div>
+
+<!-- Workout Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="toggleModal('workoutModal')"></div>
+<div class="blur-background" id="workoutModal">
+  <h2>Log Workout</h2>
+  <form>
+    <input type="text" class="input-field" placeholder="Exercise Name" required>
+    <input type="number" class="input-field" placeholder="Weight (kg)" required>
+    <input type="number" class="input-field" placeholder="Reps" required>
+    <button type="submit" class="button">Save</button>
+  </form>
+</div>
+</body>
+</html>

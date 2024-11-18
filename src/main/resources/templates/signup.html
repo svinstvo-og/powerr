@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Replace with the actual CSS path -->
+</head>
+<body>
+<div class="center">
+    <div class="blur-background">
+        <h1>Sign Up</h1>
+
+        <form action="signup" method="POST">
+            <!-- Username Field -->
+            <input type="text" class="input-field" name="username" placeholder="Username" required>
+            <div id="username-error" style="color: red;"></div> <!-- Error message placeholder -->
+
+            <!-- Password Field -->
+            <input type="password" class="input-field" name="password" placeholder="Password" required>
+            <div id="password-error" style="color: red;"></div> <!-- Error message placeholder -->
+
+            <button type="submit" class="button">Sign Up</button>
+        </form>
+
+        <p>Already have an account? <a href="/auth/login">Log in here</a></p>
+    </div>
+</div>
+
+<script>
+    // Example JavaScript for displaying error messages dynamically (optional)
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Display username error if provided in the URL query params
+    const usernameError = urlParams.get('usernameError');
+    if (usernameError) {
+        document.getElementById('username-error').textContent = usernameError;
+    }
+
+    // Display password error if provided in the URL query params
+    const passwordError = urlParams.get('passwordError');
+    if (passwordError) {
+        document.getElementById('password-error').textContent = passwordError;
+    }
+</script>
+</body>
+</html>
