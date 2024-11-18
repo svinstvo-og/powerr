@@ -8,5 +8,7 @@ spring.jpa.show-sql=true
 server.error.include-binding-errors=always
 server.error.include-message=always
 
+spring.jpa.ddl
+
 
 #logging.level.org.springframework.security=TRACE
