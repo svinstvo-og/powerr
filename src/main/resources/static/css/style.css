@@ -1,98 +1,123 @@
-/* Body Styling */
-body {
-    background-color: #121212;
-    color: #E0E0E0;
-    font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+    background-image: url(https://i.pinimg.com/736x/57/b4/b8/57b4b8d4be9699c05d68c5dbffa6669c.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
-/* Center Container */
-.center {
+section {
+    position: relative;
+    max-width: 500px; /* Adjust the max-width as needed */
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(55px);
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    padding: 2rem 3rem;
+    transition: all 0.5s ease-in-out;
 }
 
-/* Blurred Background for Form */
-.blur-background {
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
-    border-radius: 12px;
-    padding: 40px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
-}
 
-/* Form Header */
 h1 {
-    color: #E0E0E0;
-    font-size: 24px;
+    font-size: 2rem;
+    color: #fff;
     text-align: center;
-    margin-bottom: 20px;
+}
+.inputbox {
+    position: relative;
+    margin: 20px 0;
+    max-width: 550px;
+    border-bottom: 2px solid #fff;
+    transition: all 0.5s ease-in-out;
 }
 
-/* Input Fields */
-input[type="text"],
-input[type="password"] {
+.inputbox input {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 16px;
-    border: 1px solid #333;
-    border-radius: 6px;
-    background-color: #1E1E1E;
-    color: #E0E0E0;
-    font-size: 16px;
-}
-
-input[type="text"]::placeholder,
-input[type="password"]::placeholder {
-    color: #888;
-}
-
-/* Submit Button */
-button[type="submit"] {
-    width: 100%;
-    padding: 12px;
+    height: 40px;
+    background: transparent;
     border: none;
-    border-radius: 6px;
-    background-color: #333;
-    color: #E0E0E0;
-    font-size: 16px;
+    outline: none;
+    font-size: 1rem;
+    padding: 0 35px 0 5px;
+    color: #fff;
+}
+
+.inputbox ion-icon {
+    position: absolute;
+    right: 8px;
+    color: #fff;
+    font-size: 1.2rem;
+    top: 12px;
+    transition: all 0.5s ease-in-out;
+}
+
+
+.inputbox label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: all 0.5s ease-in-out;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -5px;
+    font-size: 0.9rem;
+    color: #a8a8a8;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background-color: rgba(255, 255, 255, 1);
+    border: none;
+    outline: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.4s ease;
 }
 
-button[type="submit"]:hover {
-    background-color: #555;
+button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
-/* Error Message Styling */
-p[th\\:if="${loginError}"] {
-    color: #FF4D4D;
-    font-size: 14px;
-    margin-top: 10px;
+.register {
+    font-size: 0.9rem;
+    color: #fff;
     text-align: center;
+    margin: 25px 0 10px;
+    transition: all 0.5s ease-in-out;
 }
 
-/* Responsive Styling */
-@media (max-width: 480px) {
-    .blur-background {
-        padding: 20px;
-    }
+.register p a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.5s ease-in-out;
+}
 
-    h1 {
-        font-size: 20px;
-    }
-
-    input[type="text"],
-    input[type="password"],
-    button[type="submit"] {
-        font-size: 14px;
-    }
+.register p a:hover {
+    text-decoration: underline;
+    color: #a8a8a8;
 }
