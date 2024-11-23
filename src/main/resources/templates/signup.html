@@ -14,11 +14,6 @@
             <input type="text" id= "username" name="username" required>
             <label for="">Name</label>
         </div>
-        <div class="inputbox">
-            <ion-icon name="mail-outline"></ion-icon>
-            <input type="email" id="email" name="email" required>
-            <label for="">Email</label>
-        </div>
 
         <div class="inputbox">
             <ion-icon name="lock-closed-outline"></ion-icon>
@@ -32,7 +27,7 @@
         </div>
         <button id= "submit" type="submit">Sign Up</button>
         <div class="register">
-            <p>Already have an account? <a href="/login">Log In</a></p>
+            <p>Already have an account? <a href="/auth/login">Log In</a></p>
         </div>
     </form>
 </section>
@@ -44,14 +39,12 @@
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('passwordcon').value;
-        const email = document.getElementById('email').value;
         const data ={
             username,
-            email,
             password
         }
 
-        if(password == confirmPassword){
+        if(password === confirmPassword){
             const jsonData = JSON.stringify(data);
             fetch('/signup', {
                 method: 'POST',
@@ -61,10 +54,10 @@
                 body: jsonData
             })
                 .then(response =>{
-                    //alert('succesfull');
-                    //if(response.status == 200){
-                    //alert('succesfull');
-                    //xs}
+                    alert('succesfull');
+                    if(response.status == 200){
+                    alert('succesfull');
+                    xs}
                 })
         }
 
