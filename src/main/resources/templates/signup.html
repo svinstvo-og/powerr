@@ -7,7 +7,7 @@
 </head>
 <body>
 <section>
-    <form action="/auth/signup" method="post">
+    <form>
         <h1>Sign Up</h1>
         <div class="inputbox">
             <ion-icon name="person-outline"></ion-icon>
@@ -34,34 +34,40 @@
 </body>
 
 <script>
-    const submitButtton = document.getElementById("submit");
-    submitButtton.addEventListener('click',()=>{
+    document.querySelector('form').addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent form submission
+
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('passwordcon').value;
-        const data ={
-            username,
-            password
-        }
 
-        if(password === confirmPassword){
+        if (password === confirmPassword) {
+            const data = { username, password };
             const jsonData = JSON.stringify(data);
-            fetch('/signup', {
-                method: 'POST',
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                body: jsonData
-            })
-                .then(response =>{
-                    alert('succesfull');
-                    if(response.status == 200){
-                    alert('succesfull');
-                    xs}
-                })
-        }
 
-    })
+            fetch('/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: jsonData,
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        alert('Signup successful!');
+                    } else {
+                        alert('Signup failed!');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('An error occurred during signup.');
+                });
+        } else {
+            alert('Passwords do not match.');
+        }
+    });
+
 
 
 </script>
