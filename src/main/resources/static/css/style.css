@@ -103,7 +103,36 @@ button:hover {
 }
 
 .register {
-    font-size: 0.9rem;
+    font-size: 0.9rem;<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js" defer></script>
+</head>
+<body>
+<div class="container">
+  <h1>Dashboard</h1>
+  <button class="button" onclick="toggleModal('workoutModal')">Log Workout</button>
+  <button class="button" onclick="window.location.href='/analytics'">View Analytics</button>
+</div>
+
+<!-- Workout Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="toggleModal('workoutModal')"></div>
+<div class="blur-background" id="workoutModal">
+  <h2>Log Workout</h2>
+  <form>
+    <input type="text" class="input-field" placeholder="Exercise Name" required>
+    <input type="number" class="input-field" placeholder="Weight (kg)" required>
+    <input type="number" class="input-field" placeholder="Reps" required>
+    <button type="submit" class="button">Save</button>
+  </form>
+</div>
+</body>
+</html>
+
     color: #fff;
     text-align: center;
     margin: 25px 0 10px;
@@ -120,4 +149,89 @@ button:hover {
 .register p a:hover {
     text-decoration: underline;
     color: #a8a8a8;
+}
+
+/* General Styles for Header */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #fff;
+    text-align: center;
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* Dashboard Section */
+.dashboard-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 2rem;
+    width: 100%;
+}
+
+.dashboard-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    max-width: 300px;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+.dashboard-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.workout-content,
+.progress-content,
+.exercise-list {
+    font-size: 1rem;
+}
+
+.exercise-list {
+    list-style: none;
+    padding: 0;
+}
+
+.exercise-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.exercise-list li:last-child {
+    border-bottom: none;
+}
+
+.view-details {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 1);
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+}
+
+.view-details:hover {
+    background: rgba(255, 255, 255, 0.5);
 }

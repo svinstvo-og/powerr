@@ -4,26 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="scripts.js" defer></script>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.4/collection/components/icon/icon.min.css">
 </head>
 <body>
-<div class="container">
-  <h1>Dashboard</h1>
-  <button class="button" onclick="toggleModal('workoutModal')">Log Workout</button>
-  <button class="button" onclick="window.location.href='/analytics'">View Analytics</button>
-</div>
+<header>
+  <div class="header-container">
+    <h1>Dashboard</h1>
+  </div>
+</header>
 
-<!-- Workout Modal -->
-<div class="modal-overlay" id="modalOverlay" onclick="toggleModal('workoutModal')"></div>
-<div class="blur-background" id="workoutModal">
-  <h2>Log Workout</h2>
-  <form>
-    <input type="text" class="input-field" placeholder="Exercise Name" required>
-    <input type="number" class="input-field" placeholder="Weight (kg)" required>
-    <input type="number" class="input-field" placeholder="Reps" required>
-    <button type="submit" class="button">Save</button>
-  </form>
-</div>
+<main>
+  <section class="dashboard-section">
+    <!-- Last Added Workout -->
+    <div class="dashboard-card">
+      <h2>Last Added Workout</h2>
+      <div class="workout-content">
+        <p><strong>Exercise:</strong> Bench Press</p>
+        <p><strong>Weight:</strong> 100 kg</p>
+        <p><strong>Sets:</strong> 3</p>
+        <button class="view-details">View Details</button>
+      </div>
+    </div>
+
+    <!-- Overall Progress -->
+    <div class="dashboard-card">
+      <h2>Overall Progress</h2>
+      <div class="progress-content">
+        <p><strong>Total Weight Lifted:</strong> 5000 kg</p>
+        <p><strong>Total Workouts:</strong> 15</p>
+      </div>
+    </div>
+
+    <!-- All Added Exercises -->
+    <div class="dashboard-card">
+      <h2>All Exercises</h2>
+      <ul class="exercise-list">
+        <li>Squat - 150kg</li>
+        <li>Deadlift - 180kg</li>
+        <li>Bench Press - 100kg</li>
+      </ul>
+      <button class="view-details">View All</button>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Example JavaScript to enhance interactivity (if needed)
+  document.querySelectorAll('.view-details').forEach(button => {
+    button.addEventListener('click', () => {
+      alert('Details feature coming soon!');
+    });
+  });
+</script>
 </body>
 </html>
