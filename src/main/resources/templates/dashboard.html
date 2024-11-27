@@ -16,6 +16,16 @@
 
 <main>
   <section class="dashboard-section">
+
+    <div class="dashboard-card telegram-card">
+      <h2>Telegram Integration</h2>
+      <p class="telegram-status">
+        <strong>Status:</strong>
+        <span id="telegramStatus">Not Linked</span>
+      </p>
+      <button id="telegramButton" class="link-telegram">Link/Change Telegram ID</button>
+    </div>
+
     <!-- Last Added Workout -->
     <div class="dashboard-card">
       <h2>Last Added Workout</h2>
@@ -55,6 +65,29 @@
     button.addEventListener('click', () => {
       alert('Details feature coming soon!');
     });
+  });
+
+  // JavaScript to handle highlighting and interactivity
+  const telegramId = ""; // Simulate fetching from database; set as empty if no Telegram ID
+  const telegramButton = document.getElementById('telegramButton');
+  const telegramStatus = document.getElementById('telegramStatus');
+
+  if (!telegramId) {
+    telegramButton.classList.add('highlight');
+    telegramStatus.textContent = 'Not Linked';
+  } else {
+    telegramButton.classList.remove('highlight');
+    telegramStatus.textContent = 'Linked';
+  }
+
+  telegramButton.addEventListener('click', () => {
+    const newTelegramId = prompt("Enter your Telegram ID:");
+    if (newTelegramId) {
+      // Simulate saving to database
+      alert(`Telegram ID updated to: ${newTelegramId}`);
+      telegramButton.classList.remove('highlight');
+      telegramStatus.textContent = 'Linked';
+    }
   });
 </script>
 </body>

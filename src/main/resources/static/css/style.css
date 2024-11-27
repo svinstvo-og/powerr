@@ -235,3 +235,27 @@ header h1 {
 .view-details:hover {
     background: rgba(255, 255, 255, 0.5);
 }
+
+.link-telegram {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 1);
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.link-telegram:hover {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+}
+
+.link-telegram.highlight {
+    background: #ff5757; /* Highlight color for unlinked Telegram ID */
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(255, 87, 87, 0.5);
+}

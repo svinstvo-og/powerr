@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.4/collection/components/icon/icon.min.css">
+</head>
+<body>
+<header>
+  <div class="header-container">
+    <h1>Dashboard</h1>
+  </div>
+</header>
+
+<main>
+  <section class="dashboard-section">
+
+    <form>
+      <div class="dashboard-card telegram-card">
+        <h2>Telegram Integration</h2>
+        <div class="inputbox">
+          <input type="text" id="telegramId" name="telegramId" required>
+          <label for="">Telegram id (@your_id)</label>
+        </div>
+        <button id="telegramButton" class="link-telegram">Link/Change Telegram ID</button>
+      </div>
+    </form>
+
+  </section>
+</main>
+
+<script>
+  document.querySelector('form').addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const telegramId = document.getElementById('telegramId').value;
+
+    const data = { telegramId };
+    const jsonData = JSON.stringify(data);
+
+    fetch('/telegram-link', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonData,
+    })
+            .then((response) => {
+              if (response.ok) {
+                alert('Linking successful!');
+              } else {
+                alert('Linking failed!');
+              }
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+              alert('An error occurred during linking telegram id.');
+            });
+  });
+</script>
+</body>
+</html>
