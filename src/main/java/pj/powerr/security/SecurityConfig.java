@@ -1,4 +1,4 @@
-package pj.powerr.auth;
+package pj.powerr.security;
 
 
 import lombok.AllArgsConstructor;
@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(httpForm ->{
                     httpForm.loginPage("/auth/login").permitAll();
-                    httpForm.defaultSuccessUrl("/auth/q");
+                    httpForm.defaultSuccessUrl("/");
 
                 })
 

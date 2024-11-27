@@ -1,4 +1,4 @@
-package pj.powerr.auth;
+package pj.powerr.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,5 +15,10 @@ public class AuthController {
     @GetMapping("/signup")
     public String signup() {
         return "signup";
+    }
+
+    @GetMapping("/login?error")
+    public String loginError() {
+        return "login";
     }
 }

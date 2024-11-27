@@ -23,7 +23,7 @@ public class UserService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Optional<User> user = repository.findByUsername(username);
+        Optional<pj.powerr.entity.User> user = repository.findByUsername(username);
         if (user.isPresent()) {
             var userObj = user.get();
             return User.builder()
