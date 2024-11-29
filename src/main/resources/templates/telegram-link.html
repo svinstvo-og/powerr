@@ -32,32 +32,45 @@
 </main>
 
 <script>
-  document.querySelector('form').addEventListener('submit', (event) => {
+  document.querySelector('form').addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const telegramId = document.getElementById('telegramId').value;
 
-    const data = { telegramId };
-    const jsonData = JSON.stringify(data);
+    try {
+      const usernameResponse = await fetch('api/username')
+      if (!usernameResponse.ok) {
+        throw new Error('Failed to fetch username')
+      }
+      const username = await usernameResponse.text()
 
-    fetch('/telegram-link', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonData,
-    })
-            .then((response) => {
-              if (response.ok) {
-                alert('Linking successful!');
-              } else {
-                alert('Linking failed!');
-              }
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-              alert('An error occurred during linking telegram id.');
-            });
+      const jsonData = {username: username, telegramId: telegramId};
+
+      console.log(jsonData)
+
+      fetch('/telegram-link', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonData),
+      })
+              .then((response) => {
+                if (response.ok) {
+                  alert('Linking successful!');
+                } else {
+                  alert('Linking failed!');
+                }
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+                alert('An error occurred during linking telegram id.');
+              });
+    }
+    catch (error) {
+      console.error(error);
+      alert("An error occured: " + error.message);
+    }
   });
 </script>
 </body>
