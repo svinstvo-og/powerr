@@ -1,8 +1,8 @@
 package pj.powerr.db;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pj.powerr.entity.Excercise;
+import pj.powerr.entity.Exercise;
 
-public interface ExerciseRepository extends JpaRepository<Excercise, Long>{
-    Excercise findByName(String name);
+public interface ExerciseRepository extends JpaRepository<Exercise, String>{
+    Exercise findByUsername(String name);
 }

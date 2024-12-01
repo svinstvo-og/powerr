@@ -14,7 +14,7 @@ public class Workout {
     private User user;
 
     @ManyToOne
-    private Excercise exercise;
+    private Exercise exercise;
 
     private int weight;
     private int reps;
@@ -22,7 +22,7 @@ public class Workout {
 
     public Workout() {}
 
-    public Workout(User user, Excercise exercise, int weight, int reps, Date date) {
+    public Workout(User user, Exercise exercise, int weight, int reps, Date date) {
         this.user = user;
         this.exercise = exercise;
         this.weight = weight;
@@ -46,11 +46,11 @@ public class Workout {
         this.user = user;
     }
 
-    public Excercise getExercise() {
+    public Exercise getExercise() {
         return exercise;
     }
 
-    public void setExercise(Excercise exercise) {
+    public void setExercise(Exercise exercise) {
         this.exercise = exercise;
     }
 
