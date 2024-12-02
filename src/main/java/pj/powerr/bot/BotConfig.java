@@ -5,13 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-import pj.powerr.bot.PowerrBot;
 
 @Configuration
 public class BotConfig {
 
     @Bean
-    public TelegramBotsApi telegramBotsApi(PowerrBot powerrBot) throws TelegramApiException {
+    public TelegramBotsApi telegramBotsApi(BotController powerrBot) throws TelegramApiException {
         TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
         botsApi.registerBot(powerrBot);
         return botsApi;
