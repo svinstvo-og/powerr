@@ -29,12 +29,12 @@ public class ExerciseController {
         return exerciseRepository.save(exercise);
     }
 
-    @GetMapping
-    public List<Exercise> getExercises() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-    
-        return exerciseRepository.findByUsername(user.getUsername());
-    }
+//    @GetMapping
+//    public List<Exercise> getExercises() {
+//        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+//        User user = userRepository.findByUsername(username)
+//                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+//
+//        return exerciseRepository.findByUsername(user.getUsername());
+//    }
 }

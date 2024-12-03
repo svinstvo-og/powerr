@@ -8,11 +8,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.springframework.stereotype.Component;
 import pj.powerr.db.ExerciseRepository;
 import pj.powerr.db.UserRepository;
-import pj.powerr.db.WorkoutRepository;
 import pj.powerr.entity.Exercise;
 import pj.powerr.entity.User;
-
-import java.util.Optional;
 
 @Component
 public class BotController extends TelegramLongPollingBot{

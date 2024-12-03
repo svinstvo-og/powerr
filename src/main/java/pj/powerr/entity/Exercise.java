@@ -17,12 +17,6 @@ public class Exercise {
     @JoinColumn(name = "username", nullable = false)
     private User user;
 
-    private int reps;
-    private double weight;
-
     @Column(nullable = false)
     private String name;
-
-    @Column
-    private String muscleGroup;
 }

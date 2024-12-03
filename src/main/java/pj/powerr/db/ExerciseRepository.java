@@ -6,5 +6,5 @@ import pj.powerr.entity.Exercise;
 import java.util.List;
 
 public interface ExerciseRepository extends JpaRepository<Exercise, String>{
-    List<Exercise> findByUsername(String name);
+    List<Exercise> findByUsername(String username);
 }
