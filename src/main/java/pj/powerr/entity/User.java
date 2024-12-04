@@ -19,7 +19,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long uId;
 
     @Column(unique = true, nullable = false)
     private String username;
@@ -30,7 +30,7 @@ public class User implements UserDetails {
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            name = "exercise", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "id")
+            name = "exercise", joinColumns = @JoinColumn(name = "uId"), inverseJoinColumns = @JoinColumn(name = "exId")
     )
     private Set<Exercise> exercises = new HashSet<>();
 

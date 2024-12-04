@@ -16,13 +16,13 @@ import java.util.Set;
 public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long exId;
 
     @Column(nullable = false)
     private String name;
     private int reps;
     private double weight;
 
-    @ManyToMany(mappedBy = "exercise")
+    @ManyToMany(mappedBy = "exercises")
     private Set<User> users = new HashSet<>();
 }
