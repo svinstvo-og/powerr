@@ -67,35 +67,35 @@ public class BotController extends TelegramLongPollingBot{
     }
 
     public void addExercise(Update update, String chatId, String messageText) {
-        String[] parts = messageText.split(" ");
-        if (parts.length == 4 || parts.length == 5) {
-
-            String id = update.getMessage().getChatId().toString();
-
-            User user = userRepository.findByTelegramId(id)
-                    .orElseThrow(() -> new RuntimeException("User not found, womp womp"));
-            Exercise exerciseToAdd = new Exercise();
-
-            String exercise = parts[1];
-            String weight = parts[2];
-            String reps = parts[3];
-            if (parts.length == 5) {
-                String muscleGroup = parts[4];
-                exerciseToAdd.setMuscleGroup(muscleGroup);
-            }
-
-
-
-            exerciseToAdd.setName(exercise);
-            exerciseToAdd.setWeight(Integer.parseInt(weight));
-            exerciseToAdd.setReps(Integer.parseInt(reps));
-            exerciseToAdd.setUser(user);
-
-            exerciseRepository.save(exerciseToAdd);
-
-            sendMsg(chatId, "Exercise added: " + exercise + " | " + weight + "kg x " + reps + " reps");
-        } else {
-            sendMsg(chatId, "Incorrect format. Use: /add_exercise [exercise] [weight] [reps] [*optional* muscle group]");
-        }
+//        String[] parts = messageText.split(" ");
+//        if (parts.length == 4 || parts.length == 5) {
+//
+//            String id = update.getMessage().getChatId().toString();
+//
+//            User user = userRepository.findByTelegramId(id)
+//                    .orElseThrow(() -> new RuntimeException("User not found, womp womp"));
+//            Exercise exerciseToAdd = new Exercise();
+//
+//            String exercise = parts[1];
+//            String weight = parts[2];
+//            String reps = parts[3];
+//            if (parts.length == 5) {
+//                String muscleGroup = parts[4];
+//                exerciseToAdd.setMuscleGroup(muscleGroup);
+//            }
+//
+//
+//
+//            exerciseToAdd.setName(exercise);
+//            exerciseToAdd.setWeight(Integer.parseInt(weight));
+//            exerciseToAdd.setReps(Integer.parseInt(reps));
+//            exerciseToAdd.setUser(user);
+//
+//            exerciseRepository.save(exerciseToAdd);
+//
+//            sendMsg(chatId, "Exercise added: " + exercise + " | " + weight + "kg x " + reps + " reps");
+//        } else {
+//            sendMsg(chatId, "Incorrect format. Use: /add_exercise [exercise] [weight] [reps] [*optional* muscle group]");
+//        }
     }
 }

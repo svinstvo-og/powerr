@@ -5,7 +5,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
+@Table(name = "exercise")
 @Setter
 @Getter
 public class Exercise {
@@ -13,10 +18,11 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "username", nullable = false)
-    private User user;
-
     @Column(nullable = false)
     private String name;
+    private int reps;
+    private double weight;
+
+    @ManyToMany(mappedBy = "exercise")
+    private Set<User> users = new HashSet<>();
 }
