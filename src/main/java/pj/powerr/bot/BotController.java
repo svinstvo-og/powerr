@@ -11,6 +11,8 @@ import pj.powerr.db.UserRepository;
 import pj.powerr.entity.Exercise;
 import pj.powerr.entity.User;
 
+import java.time.LocalDateTime;
+
 @Component
 public class BotController extends TelegramLongPollingBot{
 
@@ -83,6 +85,7 @@ public class BotController extends TelegramLongPollingBot{
             exerciseToAdd.setName(exercise);
             exerciseToAdd.setWeight(Integer.parseInt(weight));
             exerciseToAdd.setReps(Integer.parseInt(reps));
+            exerciseToAdd.setCreated(LocalDateTime.now());
             exerciseToAdd.setUser(user);
 
             exerciseRepository.save(exerciseToAdd);
