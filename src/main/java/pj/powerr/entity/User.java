@@ -19,7 +19,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long uId;
+    private Long id;
 
     @Column(unique = true, nullable = false)
     private String username;
@@ -28,10 +28,7 @@ public class User implements UserDetails {
     private String password;
     private String telegramId;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "exercise", joinColumns = @JoinColumn(name = "uId"), inverseJoinColumns = @JoinColumn(name = "exId")
-    )
+    @OneToMany(mappedBy = "user")
     private Set<Exercise> exercises = new HashSet<>();
 
     @Override

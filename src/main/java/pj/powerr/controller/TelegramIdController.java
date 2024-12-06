@@ -34,7 +34,7 @@ public class TelegramIdController {
             if (principal instanceof UserDetails) {
                 // Cast to your custom UserDetails implementation
                 UserDetails userDetails = (UserDetails) principal;
-                return ((User) userDetails).getUId(); // Assuming `User` includes the ID
+                return ((User) userDetails).getId(); // Assuming `User` includes the ID
             }
         }
         throw new IllegalStateException("User is not logged in");

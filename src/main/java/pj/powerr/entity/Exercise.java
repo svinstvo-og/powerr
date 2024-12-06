@@ -23,6 +23,6 @@ public class Exercise {
     private int reps;
     private double weight;
 
-    @ManyToMany(mappedBy = "exercises")
-    private Set<User> users = new HashSet<>();
+    @ManyToOne
+    private User user;
 }
