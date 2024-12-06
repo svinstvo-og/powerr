@@ -19,6 +19,17 @@ public class ExerciseController {
     @Autowired
     private ExerciseRepository exerciseRepository;
 
+    @GetMapping("get/all")
+    public List<Exercise> getExercises() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        return exerciseRepository.findByUserId(user.getId());
+    }
+}
+
+
 //    @PostMapping
 //    public Exercise addExercise(@RequestBody Exercise exercise) {
 //        String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -28,13 +39,3 @@ public class ExerciseController {
 //        exercise.setUser(user);
 //        return exerciseRepository.save(exercise);
 //    }
-
-//    @GetMapping
-//    public List<Exercise> getExercises() {
-//        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-//        User user = userRepository.findByUsername(username)
-//                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-//
-//        return exerciseRepository.findByUsername(user.getUsername());
-//    }
-}
