@@ -2,9 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Analytics</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- chartik jsik -->
 </head>
 <body>
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Exercise Analytics</h2>
+        <div class="dropdown">
+            <label for="exerciseSelect">Select Exercise:</label>
+            <select id="exerciseSelect">
+                <option value="squat">Squat</option>
+                <option value="bench_press">Bench Press</option>
+                <option value="deadlift">Deadlift</option>
+                <!-- Dynamically populate more exercises here -->
+            </select>
+        </div>
+        <div class="log">
+            <h3>Exercise Log</h3>
+            <ul id="exerciseLog">
+                <!-- Dynamically populate exercise log here -->
+            </ul>
+        </div>
+    </div>
 
+
+    <div class="main">
+        <canvas id="exerciseChart"></canvas>
+    </div>
+</div>
+
+<script src="script.js"></script> 
 </body>
 </html>
