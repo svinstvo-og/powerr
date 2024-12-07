@@ -1,7 +1,7 @@
 // Fetch data from the Spring API endpoint
 async function fetchExercises() {
     try {
-        const response = await fetch('/api/exercises/get'); // Use the correct endpoint
+        const response = await fetch('/api/exercise/get/all'); // Use the correct endpoint
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -15,7 +15,7 @@ async function fetchExercises() {
 
 // Display fetched data in the HTML
 function displayExercises(exercises) {
-    const list = document.getElementById('exercise-list');
+    const list = document.getElementById('exerciseLog');
     list.innerHTML = ''; // Clear existing content
 
     exercises.forEach((exercise) => {
