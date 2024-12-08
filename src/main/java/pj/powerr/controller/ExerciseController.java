@@ -8,6 +8,7 @@ import pj.powerr.db.UserRepository;
 import pj.powerr.entity.Exercise;
 import pj.powerr.entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,13 +20,13 @@ public class ExerciseController {
     @Autowired
     private ExerciseRepository exerciseRepository;
 
-    @GetMapping("get/all")
+    @GetMapping("get")
     public List<Exercise> getExercises() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
-
-        return exerciseRepository.findByUserId(user.getId());
+        List<Exercise> exercises = exerciseRepository.findByUserId(user.getId());
+        return exercises;
     }
 }
 

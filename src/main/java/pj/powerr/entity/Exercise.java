@@ -1,5 +1,6 @@
 package pj.powerr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -27,6 +28,7 @@ public class Exercise {
     //@Column(nullable = false)
     private LocalDateTime created;
 
+    @JsonIgnore
     @ManyToOne
     private User user;
 }
