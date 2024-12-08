@@ -28,4 +28,9 @@ public class ExerciseController {
         List<Exercise> exercises = exerciseRepository.findByUserId(user.getId());
         return exercises;
     }
+
+    @GetMapping("get/intensity")
+    public double calculateRM(Exercise exercise) {
+        return exercise.getWeight() / (1.0278 - 0.0278 * exercise.getWeight());
+    }
 }

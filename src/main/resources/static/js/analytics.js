@@ -12,7 +12,6 @@ async function fetchExercises() {
         console.error('Error fetching exercises:', error);
     }
 }
-
 // Initialize dropdown, log, and chart with fetched data
 function initializeAnalytics(exercises) {
     const exerciseSelect = document.getElementById('exerciseSelect');
@@ -46,7 +45,7 @@ function initializeAnalytics(exercises) {
         data: {
             labels: [], // Placeholder
             datasets: [{
-                label: 'Weight Progression',
+                label: 'Estimated 1RM: ',
                 data: [], // Placeholder
                 backgroundColor: 'rgba(46, 204, 113, 0.2)',
                 borderColor: 'rgba(39, 174, 96, 1)',
@@ -95,7 +94,7 @@ function initializeAnalytics(exercises) {
 
         // Update chart
         exerciseChart.data.labels = data.map((entry) => `Date ${entry.created}`);
-        exerciseChart.data.datasets[0].data = data.map((entry) => entry.weight);
+        exerciseChart.data.datasets[0].data = data.map((entry) => (entry.weight / (1.0278 - 0.0278 * entry.reps)));
         exerciseChart.update();
     });
 
