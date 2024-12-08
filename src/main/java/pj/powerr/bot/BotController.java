@@ -11,6 +11,7 @@ import pj.powerr.db.UserRepository;
 import pj.powerr.entity.Exercise;
 import pj.powerr.entity.User;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Component
@@ -70,7 +71,7 @@ public class BotController extends TelegramLongPollingBot{
 
     public void addExercise(Update update, String chatId, String messageText) {
         String[] parts = messageText.split(" ");
-        if (parts.length == 4) {
+        if (parts.length == 5) {
 
             String id = update.getMessage().getChatId().toString();
 
@@ -81,18 +82,20 @@ public class BotController extends TelegramLongPollingBot{
             String exercise = parts[1];
             String weight = parts[2];
             String reps = parts[3];
+            String sets = parts[4];
 
             exerciseToAdd.setName(exercise);
             exerciseToAdd.setWeight(Integer.parseInt(weight));
             exerciseToAdd.setReps(Integer.parseInt(reps));
-            exerciseToAdd.setCreated(LocalDateTime.now());
+            exerciseToAdd.setSets(Integer.parseInt(sets));
+            exerciseToAdd.setCreated(LocalDate.now());
             exerciseToAdd.setUser(user);
 
             exerciseRepository.save(exerciseToAdd);
 
-            sendMsg(chatId, "Exercise added: " + exercise + " | " + weight + "kg x " + reps + " reps");
+            sendMsg(chatId, "Exercise added: " + exercise + " | " + sets + " sets @ "+ weight + "kg x " + reps + " reps");
         } else {
-            sendMsg(chatId, "Incorrect format. Use: /add_exercise [exercise] [weight] [reps]");
+            sendMsg(chatId, "Incorrect format. Use: /add_exercise [exercise] [weight] [reps] [sets]");
         }
     }
 }

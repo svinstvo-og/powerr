@@ -1,7 +1,7 @@
 // Fetch data from the Spring API endpoint
 async function fetchExercises() {
     try {
-        const response = await fetch('/api/exercise/get/all'); // Update to match your API endpoint
+        const response = await fetch('/api/exercise/get'); // Update to match your API endpoint
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -27,7 +27,7 @@ function initializeAnalytics(exercises) {
         acc[exercise.name].push({
             reps: exercise.reps,
             weight: exercise.weight,
-            session: exercise.sessionNumber || acc[exercise.name].length + 1,
+            created: exercise.created,
         });
         return acc;
     }, {});
@@ -67,7 +67,7 @@ function initializeAnalytics(exercises) {
                 x: {
                     title: {
                         display: true,
-                        text: 'Session Number',
+                        text: 'Date',
                     },
                 },
                 y: {
@@ -89,12 +89,12 @@ function initializeAnalytics(exercises) {
         exerciseLog.innerHTML = data
             .map(
                 (entry) =>
-                    `<li>Session ${entry.session}: ${entry.reps} reps at ${entry.weight} kg</li>`
+                    `<li>${entry.created}: ${entry.reps} reps at ${entry.weight} kg</li>`
             )
             .join('');
 
         // Update chart
-        exerciseChart.data.labels = data.map((entry) => `Session ${entry.session}`);
+        exerciseChart.data.labels = data.map((entry) => `Date ${entry.created}`);
         exerciseChart.data.datasets[0].data = data.map((entry) => entry.weight);
         exerciseChart.update();
     });

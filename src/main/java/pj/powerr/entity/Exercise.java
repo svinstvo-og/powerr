@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -24,9 +25,10 @@ public class Exercise {
     private String name;
     private int reps;
     private double weight;
+    private int sets;
 
-    //@Column(nullable = false)
-    private LocalDateTime created;
+    @Column(nullable = false)
+    private LocalDate created;
 
     @JsonIgnore
     @ManyToOne
