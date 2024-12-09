@@ -42,6 +42,9 @@ public class BotController extends TelegramLongPollingBot{
             else if (messageText.startsWith("/list")) {
                 listExercises(update, chatId);
             }
+            else if (messageText.startsWith("/log")) {
+                log(update, chatId);
+            }
             else if (messageText.startsWith("/help")) {
                 listExercises(update, chatId);
             }
@@ -118,7 +121,34 @@ public class BotController extends TelegramLongPollingBot{
         }
         sendMsg(chatId, "List of exercises: " + uniqueExercises.toString());
     }
-    
+
+    public void log(Update update, String chatId) {
+        String[] parts = update.getMessage().getText().split(" ");
+
+        if (parts.length == 2) {
+            User user = userRepository.findByTelegramId(chatId)
+                    .orElseThrow(() -> new IllegalArgumentException("User with such telegram id wasn't found"));
+
+            try {
+                List<Exercise> log = exerciseRepository.findByUserIdAndName(user.getId(), parts[1]);
+                StringBuilder msg = new StringBuilder().append(parts[1]);
+                msg.append(" : \n");
+                String instance;
+                for (int i = 0; i < log.size(); i++) {
+                    instance = log.get(i).getCreated() + ": " + log.get(i).getReps() + " reps @ " + log.get(i).getWeight() + "kg * " + log.get(i).getSets() + " sets";
+                    msg.append(instance).append("\n");
+                }
+                sendMsg(chatId, msg.toString());
+            }
+            catch (Exception e) {
+                sendMsg(chatId, e.getMessage());
+            }
+        }
+        else {
+            sendMsg(chatId, "Wrong format. Use: /log [exercise name]. To list all existing exercises use /list");
+        }
+    }
+
     public void help(Update update, String chatId) {
 
     }
