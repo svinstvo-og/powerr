@@ -6,6 +6,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.springframework.stereotype.Component;
+import pj.powerr.controller.ExerciseController;
 import pj.powerr.db.ExerciseRepository;
 import pj.powerr.db.UserRepository;
 import pj.powerr.entity.Exercise;
@@ -13,6 +14,7 @@ import pj.powerr.entity.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Component
 public class BotController extends TelegramLongPollingBot{
@@ -30,11 +32,17 @@ public class BotController extends TelegramLongPollingBot{
             String chatId = update.getMessage().getChatId().toString();
 
             // Simple command: /add_exercise exercise_name weight reps
-            if (messageText.startsWith("/add_exercise") || messageText.startsWith("/exercise") || messageText.startsWith("/adex")) {
+            if (messageText.startsWith("/add_exercise") || messageText.startsWith("/exercise") || messageText.startsWith("/add")|| messageText.startsWith("/adex")) {
                 addExercise(update, chatId, messageText);
             }
             else if (messageText.startsWith("/Id") || messageText.startsWith("/id")){
                 getId(update, chatId);
+            }
+            else if (messageText.startsWith("/list")) {
+                listExercises(update, chatId);
+            }
+            else if (messageText.startsWith("/help")) {
+
             }
             else {
                 sendMsg(chatId, "Incorrect format. Use: /help to list all commands.");
@@ -97,5 +105,17 @@ public class BotController extends TelegramLongPollingBot{
         } else {
             sendMsg(chatId, "Incorrect format. Use: /add_exercise [exercise] [weight] [reps] [sets]");
         }
+    }
+
+    public void listExercises(Update update, String chatId) {
+        ExerciseController exerciseController = new ExerciseController();
+
+        List<Exercise> exerciseList = exerciseController.getExercises();
+
+        sendMsg(chatId, "List of exercises: " + exerciseList.toString());
+    }
+
+    public void help(Update update, String chatId) {
+
     }
 }

@@ -29,6 +29,13 @@ public class ExerciseController {
         return exercises;
     }
 
+    public List<Exercise> getUniqueExercises() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        List<Exercise> exercises = exerciseRepository.findByUserIdAndName(user.getId(), );
+    }
+
     @GetMapping("get/intensity")
     public double calculateRM(Exercise exercise) {
         return exercise.getWeight() / (1.0278 - 0.0278 * exercise.getWeight());
