@@ -44,15 +44,26 @@ function initializeAnalytics(exercises) {
         type: 'line',
         data: {
             labels: [], // Placeholder
-            datasets: [{
-                label: 'Estimated 1RM: ',
+            datasets: [
+                {
+                label: 'Estimated 1RM',
                 data: [], // Placeholder
                 backgroundColor: 'rgba(46, 204, 113, 0.2)',
                 borderColor: 'rgba(39, 174, 96, 1)',
                 borderWidth: 2,
                 fill: true,
-                tension: 0.3,
-            }],
+                tension: 0.3
+                },
+                {
+                    label: 'Raw weight',
+                    data: [], // Placeholder
+                    backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                    borderColor: 'rgba(41, 128, 185, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.3,
+                }
+            ],
         },
         options: {
             responsive: true,
@@ -94,7 +105,8 @@ function initializeAnalytics(exercises) {
 
         // Update chart
         exerciseChart.data.labels = data.map((entry) => `Date ${entry.created}`);
-        exerciseChart.data.datasets[0].data = data.map((entry) => (entry.weight / (1.0278 - 0.0278 * entry.reps)));
+        exerciseChart.data.datasets[0].data = data.map((entry) => (entry.weight * (1 + entry.reps/30)));
+        exerciseChart.data.datasets[1].data = data.map((entry) => entry.weight);
         exerciseChart.update();
     });
 
