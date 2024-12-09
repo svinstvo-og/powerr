@@ -14,6 +14,7 @@ import pj.powerr.entity.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 
 @Component
@@ -42,7 +43,7 @@ public class BotController extends TelegramLongPollingBot{
                 listExercises(update, chatId);
             }
             else if (messageText.startsWith("/help")) {
-
+                listExercises(update, chatId);
             }
             else {
                 sendMsg(chatId, "Incorrect format. Use: /help to list all commands.");
@@ -108,13 +109,16 @@ public class BotController extends TelegramLongPollingBot{
     }
 
     public void listExercises(Update update, String chatId) {
-        ExerciseController exerciseController = new ExerciseController();
-
-        List<Exercise> exerciseList = exerciseController.getExercises();
-
-        sendMsg(chatId, "List of exercises: " + exerciseList.toString());
+        User user = userRepository.findByTelegramId(chatId)
+                .orElseThrow(() -> new IllegalArgumentException("User with such telegram id wasn't found"));
+        List<Exercise> exercises = exerciseRepository.findByUserId(user.getId());
+        HashSet<String> uniqueExercises = new HashSet<>();
+        for (Exercise exercise : exercises) {
+            uniqueExercises.add(exercise.getName());
+        }
+        sendMsg(chatId, "List of exercises: " + uniqueExercises.toString());
     }
-
+    
     public void help(Update update, String chatId) {
 
     }

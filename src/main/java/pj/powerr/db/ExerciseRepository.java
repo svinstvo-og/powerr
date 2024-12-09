@@ -8,6 +8,4 @@ import java.util.List;
 
 public interface ExerciseRepository extends JpaRepository<Exercise, String>{
     List<Exercise> findByUserId(Long userId);
-
-    List<Exercise> findByUserIdAndName(Long userId, String name);
 }
