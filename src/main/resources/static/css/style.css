@@ -12,10 +12,10 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-image: url(https://i.pinimg.com/736x/67/52/57/675257ef2008c2c6e574171c18d528cb.jpg);
+    background-image: url(https://i.pinimg.com/originals/1f/f7/c3/1ff7c3d70ea9d165c888f2db51d406ad.gif);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: 100% 100%;
 }
 
 section {
